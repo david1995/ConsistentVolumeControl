@@ -17,8 +17,8 @@ stages:
       pool:
         vmImage: 'windows-2022'
 
-- stage: PackReleaseGitHub
-  dependsOn: Build
+# - stage: PackReleaseGitHub
+#   dependsOn: Build
 
-- stage: PackReleaseChocolatey
-  dependsOn: Build
+# - stage: PackReleaseChocolatey
+#   dependsOn: Build
