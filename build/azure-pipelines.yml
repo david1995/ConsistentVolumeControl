@@ -1,4 +1,4 @@
-name: Template.CI
+name: ConsistentVolumeControl.CI
 
 trigger:
 - master
@@ -7,10 +7,18 @@ resources:
 - repo: self
   clean: 'true'
 
-jobs:
-- template: build.yml
-  parameters:
-    name: TemplateCI
-    artifactFileName: '$(Build.ArtifactStagingDirectory)/Template-CI.zip'
-    pool:
-      vmImage: 'Ubuntu 20.04'
+stages:
+- stage: Build
+  jobs:
+  - template: build.yml
+    parameters:
+      name: ConsistentVolumeControlCI
+      artifactFileName: '$(Build.ArtifactStagingDirectory)/ConsistentVolumeControl-CI.zip'
+      pool:
+        vmImage: 'windows-2022'
+
+- stage: PackReleaseGitHub
+  dependsOn: Build
+
+- stage: PackReleaseChocolatey
+  dependsOn: Build

@@ -1,9 +1,9 @@
 parameters:
-  name: ''
-  pool: ''
-  nugetVersion: 5.8.0
-  sdkVersion: 5.0.100
-  artifactFileName: ''
+- name: ''
+- pool: ''
+- nugetVersion: 5.8.0
+- sdkVersion: '6.x'
+- artifactFileName: ''
 
 jobs:
 - job: ${{ parameters.name }}
@@ -14,7 +14,7 @@ jobs:
     inputs:
       versionSpec: ${{ parameters.nugetVersion }}
 
-  - task: DotNetCoreInstaller@0
+  - task: UseDotNet@2
     displayName: 'Use .NET Core'
     inputs:
       version: ${{ parameters.sdkVersion }}
